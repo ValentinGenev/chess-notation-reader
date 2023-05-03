@@ -2,17 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { TileComponent } from './components/tile/tile.component';
-import { BoardComponent } from './components/board/board.component';
+import { BoardModule } from './board/board.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TileComponent,
-    BoardComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BoardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

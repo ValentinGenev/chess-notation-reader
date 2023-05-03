@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-board',
+  selector: 'app-field',
   template: `
     <div class="board">
       <div
@@ -17,9 +17,9 @@ import { Component } from '@angular/core';
       </div>
     </div>
   `,
-  styleUrls: ['./board.component.css']
+  styleUrls: ['./field.component.css']
 })
-export class BoardComponent {
+export class FieldComponent {
   RANKS_COUNT = 8
   FILES_COUNT = 8
   ranks = [].constructor(this.RANKS_COUNT)

@@ -15,6 +15,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TileComponent implements OnInit {
   @Input() rank!: number
   @Input() file!: number
+
   tileName?: string
   isOddRank?: boolean
   isOddFile?: boolean
