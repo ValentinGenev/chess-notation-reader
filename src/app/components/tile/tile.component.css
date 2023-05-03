@@ -1,0 +1,9 @@
+[class*=tile] {
+  height: 100%;
+  background-color: beige;
+}
+
+[class*=tile]:not(.odd-rank).odd-file,
+[class*=tile].odd-rank:not(.odd-file) {
+  background-color: cadetblue;
+}
