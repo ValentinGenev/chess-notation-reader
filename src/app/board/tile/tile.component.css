@@ -5,5 +5,5 @@
 
 [class*=tile]:not(.odd-rank).odd-file,
 [class*=tile].odd-rank:not(.odd-file) {
-  background-color: cadetblue;
+  background-color: #6182b8;
 }
