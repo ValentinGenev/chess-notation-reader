@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ReadService } from './services/notations/descriptive/read.service';
-
 @Component({
   selector: 'app-root',
   template: `
@@ -12,13 +10,9 @@ import { ReadService } from './services/notations/descriptive/read.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(
-    private descriptiveNotationRead: ReadService
-  ) {}
+  constructor() {}
 
   ngOnInit() {
-    this.descriptiveNotationRead.getGames().subscribe(result => {
-      console.log('---------------', result)
-    })
+    console.log('---------------', 'feels nice man')
   }
 }
