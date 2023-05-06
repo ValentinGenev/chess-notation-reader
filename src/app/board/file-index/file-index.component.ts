@@ -9,7 +9,7 @@ import { NotationSelectService } from 'src/app/services/notation-select.service'
       <li *ngFor="let index of indexes">{{index}}</li>
     </ol>
   `,
-  styleUrls: ['./file-index.component.css']
+  styleUrls: ['./file-index.component.scss']
 })
 export class FileIndexComponent implements OnInit {
   indexes:string[] = []
@@ -22,7 +22,7 @@ export class FileIndexComponent implements OnInit {
     this.notationSelect.getSelectedNotation().subscribe(notation => {
       this.indexes = notation === Notations.DESCRIPTIVE
         ? ['QR', 'QN', 'QB', 'Q', 'K', 'KB', 'KN', 'KR']
-        : ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+        : ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
     })
   }
 }

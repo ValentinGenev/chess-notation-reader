@@ -1,0 +1,29 @@
+.moves-table {
+  td {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    vertical-align: top;
+  }
+
+  ::ng-deep app-move-input {
+    mat-form-field {
+      [class*=field-wrapper] {
+        height: 3.25rem;
+      }
+      [class*=subscript-wrapper] {
+        height: 0;
+        // overflow: hidden;
+      }
+
+      &.mat-form-field-invalid {
+        a {
+          color: var(--mdc-theme-error, #f44336);
+        }
+
+        [class*=subscript-wrapper] {
+          height: unset;
+        }
+      }
+    }
+  }
+}

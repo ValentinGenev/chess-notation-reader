@@ -10,7 +10,7 @@ export class NotationSelectService {
   private options: SelectOption[] = [
     {
       value: Notations.ALGEBRAIC,
-      name: 'Algebraic'
+      name: 'Algebraic (standard)'
     },
     {
       value: Notations.DESCRIPTIVE,

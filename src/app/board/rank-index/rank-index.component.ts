@@ -14,7 +14,7 @@ import { Component, Input } from '@angular/core';
       <li *ngFor="let index of INDEXES">{{index}}</li>
     </ol>
   `,
-  styleUrls: ['./rank-index.component.css']
+  styleUrls: ['./rank-index.component.scss']
 })
 export class RankIndexComponent {
   @Input() isReversed?: boolean

@@ -10,7 +10,7 @@ import { Component, Input, OnInit } from '@angular/core';
       [attr.data-automation-id]="tileName"
     ></div>
   `,
-  styleUrls: ['./tile.component.css']
+  styleUrls: ['./tile.component.scss']
 })
 export class TileComponent implements OnInit {
   @Input() rank!: number

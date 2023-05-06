@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-field',
   template: `
-    <div class="board">
+    <div class="field">
       <div
         *ngFor="let rank of ranks; let y = index"
         [ngClass]="'rank-' + y"
@@ -17,7 +17,7 @@ import { Component } from '@angular/core';
       </div>
     </div>
   `,
-  styleUrls: ['./field.component.css']
+  styleUrls: ['./field.component.scss']
 })
 export class FieldComponent {
   RANKS_COUNT = 8
