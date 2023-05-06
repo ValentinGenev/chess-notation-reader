@@ -4,12 +4,41 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .d-block {
   display: block !important;
 }
-
 .d-grid {
   display: grid !important;
+}
+.d-flex {
+  display: flex !important;
+}
+
+.gap-sm {
+  gap: .5rem;
+}
+.gap-1 {
+  gap: 1rem;
+}
+.gap-2 {
   gap: 2rem;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+.flex-column-reverse {
+  flex-direction: column-reverse;
 }
 
 .cols-2 {
   grid-template-columns: auto 1fr;
+}
+.col-3-auto {
+  grid-template-columns: repeat(3, auto);
+}
+
+.pos-col-2 {
+  grid-column: 2;
+}
+
+.hide {
+  opacity: 0;
 }

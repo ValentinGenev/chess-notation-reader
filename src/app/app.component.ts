@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   template: `
     <main class="container">
       <h1>Notation reader</h1>
-      <div class='d-grid cols-2'>
-        <app-field></app-field>
+      <div class='d-grid gap-2 cols-2'>
+        <app-board></app-board>
         <app-controls></app-controls>
       </div>
     </main>
