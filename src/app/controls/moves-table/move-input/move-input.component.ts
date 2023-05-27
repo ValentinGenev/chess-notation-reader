@@ -1,43 +1,56 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ReplaySubject, takeUntil } from 'rxjs';
 import { AbstractControl, FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Notations } from 'src/app/models/EMNotations';
 import { NotationSelectService } from 'src/app/services/notation-select.service';
+import { Color, MovesService } from '../service/moves.service';
 
 @Component({
   selector: 'app-move-input',
   template: `
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" [ngClass]="{'read-only': readonly}">
       <input
         matInput
-        [formControl]="moveFormControl"
+        [formControl]="formControl"
         data-automation-id="move-input"
-      >
-      <mat-error *ngIf="moveFormControl.valid">
+        [readonly]="readonly">
+
+      <mat-error *ngIf="formControl.invalid">
         Bad format <a *ngIf="notationWiki" [href]="notationWiki" target="_blank">(wiki)</a>
       </mat-error>
     </mat-form-field>
   `
 })
 export class MoveInputComponent implements OnInit {
-  @Input() value!: string
+  private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
-  moveFormControl = new FormControl<string>(this.value)
-  isDisabled = false
+  @Input() rowIndex!: number
+  @Input() color!: Color
+  @Input() value!: string
+  @Input() readonly!: boolean
+
+  formControl = new FormControl<string>('')
   notationFormat?: RegExp
   notationWiki?: string
 
   constructor(
-    private notationSelect: NotationSelectService
+    private notationSelect: NotationSelectService,
+    private moves: MovesService
   ) {}
 
   ngOnInit() {
-    if (this.value) {
-      this.moveFormControl.setValue(this.value)
-      this.moveFormControl.disable()
-    } else {
-      this.notationSelect.getSelectedNotation()
-        .subscribe(notation => this.setFieldValidation(notation))
-    }
+    this.formControl.setValue(this.value)
+
+    this.notationSelect.getSelectedNotation$()
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(notation => this.setFieldValidation(notation))
+
+    this.watchInputValue()
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
   private setFieldValidation(notation: Notations) {
@@ -55,15 +68,26 @@ export class MoveInputComponent implements OnInit {
         this.notationWiki = 'https://en.wikipedia.org/wiki/Descriptive_notation'
         break
     }
-    this.moveFormControl.setValidators([
-      this.moveValidator(this.notationFormat)
+    this.formControl.setValidators([
+      this.validateMove(this.notationFormat)
     ])
   }
 
-  private moveValidator(formatRe?: RegExp): ValidatorFn {
+  private validateMove(formatRe?: RegExp): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       return control.value && !formatRe?.test(control.value)
         ? { badFormat: { value: control.value } } : null
     };
+  }
+
+  private watchInputValue() {
+    this.formControl.statusChanges
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(() => {
+        if (this.formControl.valid) {
+          this.moves
+            .updateMove(this.rowIndex, this.color, this.formControl.value || '')
+        }
+      })
   }
 }

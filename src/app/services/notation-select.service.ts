@@ -17,7 +17,7 @@ export class NotationSelectService {
       name: 'Descriptive'
     }
   ]
-  private selectedNotation =
+  private selectedNotation$ =
     new BehaviorSubject<Notations>(this.options[0].value)
 
   constructor() { }
@@ -27,10 +27,10 @@ export class NotationSelectService {
   }
 
   setSelectedNotation(notation: Notations) {
-    this.selectedNotation.next(notation)
+    this.selectedNotation$.next(notation)
   }
 
-  getSelectedNotation() {
-    return this.selectedNotation.asObservable()
+  getSelectedNotation$() {
+    return this.selectedNotation$.asObservable()
   }
 }

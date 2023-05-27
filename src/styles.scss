@@ -1,14 +1,16 @@
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import './assets/bootstrap-grid/bootstrap-utilities.min.css';
 
-.d-block {
-  display: block !important;
+html,
+body {
+  height: 100%;
 }
+
+body {
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 .d-grid {
   display: grid !important;
-}
-.d-flex {
-  display: flex !important;
 }
 
 .gap-sm {

@@ -19,7 +19,7 @@ export class FileIndexComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.notationSelect.getSelectedNotation().subscribe(notation => {
+    this.notationSelect.getSelectedNotation$().subscribe(notation => {
       this.indexes = notation === Notations.DESCRIPTIVE
         ? ['QR', 'QN', 'QB', 'Q', 'K', 'KB', 'KN', 'KR']
         : ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']

@@ -11,12 +11,12 @@ import { NotationSelectService } from 'src/app/services/notation-select.service'
       <mat-label>Choose notation</mat-label>
       <mat-select
         [value]="selectedNotation | async"
-        (selectionChange)="changeNotation($event)"
-      >
+        (selectionChange)="changeNotation($event)">
         <mat-option
           *ngFor="let option of options"
-          [value]="option.value"
-        >{{option.name}}</mat-option>
+          [value]="option.value">
+          {{option.name}}
+        </mat-option>
       </mat-select>
     </mat-form-field>
   `
@@ -29,7 +29,7 @@ export class NotationSelectComponent {
     private notationSelection: NotationSelectService
   ) {
     this.options = this.notationSelection.getOptions()
-    this.selectedNotation = this.notationSelection.getSelectedNotation()
+    this.selectedNotation = this.notationSelection.getSelectedNotation$()
   }
 
   changeNotation(option: any) {

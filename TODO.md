@@ -1,0 +1,2 @@
+- highlight the previous cells where the figure was on hover
+- rewrite current layout with Bootstrap

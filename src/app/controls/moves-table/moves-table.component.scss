@@ -1,18 +1,33 @@
 .moves-table {
-  td {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    vertical-align: top;
+  .moves-row {
+    &.to-be-removed {
+      background-color: rgba(244, 67, 54, .15);
+    }
+
+    & > span {
+      min-width: 1rem;
+    }
+
+    mat-icon {
+      color: #f44336;
+    }
   }
 
   ::ng-deep app-move-input {
+    .read-only {
+      opacity: .7;
+      pointer-events: none;
+    }
+
     mat-form-field {
+
       [class*=field-wrapper] {
-        height: 3.25rem;
+        height: 3rem;
       }
       [class*=subscript-wrapper] {
         height: 0;
-        // overflow: hidden;
+        overflow: hidden;
+        transition: height .1s;
       }
 
       &.mat-form-field-invalid {
@@ -21,7 +36,7 @@
         }
 
         [class*=subscript-wrapper] {
-          height: unset;
+          height: 1.375rem;
         }
       }
     }

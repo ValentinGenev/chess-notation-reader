@@ -24,7 +24,7 @@ export class BoardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.notationSelect.getSelectedNotation().subscribe(notation => {
+    this.notationSelect.getSelectedNotation$().subscribe(notation => {
       this.isDescriptive = notation === Notations.DESCRIPTIVE
     })
   }

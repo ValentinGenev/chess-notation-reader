@@ -1,31 +1,38 @@
-<table mat-table class="moves-table" [dataSource]="dataSource">
-  <ng-container matColumnDef="move">
-    <th mat-header-cell *matHeaderCellDef>Move</th>
-    <td mat-cell *matCellDef="let element">{{element. move}}</td>
-  </ng-container>
+<div class="moves-table">
+  <div
+    class="moves-row d-flex gap-3 align-items-center p-2"
+    *ngFor="let move of moves; let i = index"
+    [ngClass]="{'to-be-removed': isToBeRemovedArray[i]}">
 
-  <ng-container matColumnDef="white">
-    <th mat-header-cell *matHeaderCellDef>White</th>
-    <td
-      mat-cell
-      *matCellDef="let element"
-      data-automation-id="whites-move"
-    >
-      <app-move-input [value]="element.white"></app-move-input>
-    </td>
-  </ng-container>
+    <span class="g-col-4">{{i}}</span>
 
-  <ng-container matColumnDef="black">
-    <th mat-header-cell *matHeaderCellDef>Black</th>
-    <td
-      mat-cell
-      *matCellDef="let element"
-      data-automation-id="blacks-move"
-    >
-    <app-move-input [value]="element.black"></app-move-input>
-    </td>
-  </ng-container>
+    <app-move-input
+      *ngFor="let color of [WHITE, BLACK]"
+      class="g-col-4"
+      [rowIndex]="i"
+      [color]="color"
+      [value]="move[color]"
+      [readonly]="isReadonly(i)"></app-move-input>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <button
+      mat-icon-button
+      color="warn"
+      aria-label="Example icon button with a heart icon"
+      (click)="removeRowsFrom(i)"
+      (mouseenter)="isToBeRemoved(i, true)"
+      (mouseleave)="isToBeRemoved(i, false)">
+      <mat-icon class="material-icons-outlined">delete</mat-icon>
+    </button>
+  </div>
+
+  <div class="d-flex justify-content-end mt-2 me-4">
+    <button
+      mat-flat-button
+      class="me-5"
+      color="primary"
+      [disabled]="!canAddRow()"
+      (click)="addRow()">
+      <mat-icon class="md-18">add</mat-icon> Add Row
+    </button>
+  </div>
+</div>
